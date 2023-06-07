@@ -1,0 +1,32 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+		{
+			"name": "Launch main in debugger",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/../godot/bin/godot.macos.editor.dev.arm64",
+			"args": ["--path", "/Users/mrwilson/Software/gamedev/godot-frontend-test/godot-frontend", "res://main.tscn"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+		{
+			"name": "Launch Editor in debugger",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}../godot/bin/godot.macos.editor.dev.arm64",
+			"args": ["--editor", "--path", "/Users/mrwilson/Software/gamedev/godot-frontend-test/godot-frontend"],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb"
+		},
+    ]
+}

@@ -1,0 +1,4 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/godot-frontend",
+    "cmake.buildDirectory": "${workspaceFolder}/godot-frontend/.godot/build"
+}
