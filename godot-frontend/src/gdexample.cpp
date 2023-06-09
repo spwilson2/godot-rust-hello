@@ -30,9 +30,9 @@ extern "C" {
 
     void gds_instantiate(uint32_t x, uint32_t y) {
         auto vec = Vector2(x,y);
-        //mtx.lock();
+        mtx.lock();
         instantiate_queue.push_back(vec);
-        //mtx.unlock();
+        mtx.unlock();
         //auto new_node = (GDExample*) second->duplicate();
         //auto trans = Transform2D(0, vec);
         //new_node->set_transform(trans);
@@ -62,10 +62,10 @@ void GDExample::_process(double delta) {
         hello_world();
     }
 
-    //mtx.lock();
-    if (instantiate_queue.size() == 10000) {
-    auto loader = ResourceLoader::get_singleton();
-    auto node_scene = (Ref<PackedScene>)loader->load("res://gd_example.tscn");
+    //if (instantiate_queue.size() == 100000) {
+    mtx.lock();
+    static auto loader = ResourceLoader::get_singleton();
+    static auto node_scene = (Ref<PackedScene>)loader->load("res://gd_example.tscn");
     while (instantiate_queue.size() > 0) {
         Vector2 vec = instantiate_queue.back();
         instantiate_queue.pop_back();
@@ -82,9 +82,9 @@ void GDExample::_process(double delta) {
         count++;
         new_node->set_z_index(count% 4096);
     }
-    done_world();
-}
-    //mtx.unlock();
+    if (count == 100000)
+        done_world();
+    mtx.unlock();
 
     //time_passed += delta;
     //Vector2 new_position = Vector2(10.0 + (10.0 * sin(time_passed * 20.0)), 10.0 + (10.0 * cos(time_passed * 10.5)));

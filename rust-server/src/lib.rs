@@ -17,7 +17,7 @@ static mut CELL: OnceLock<AtomicBool> = OnceLock::new();
 fn run_loop() {
     unsafe {
         let time = SystemTime::now();
-        for i in 0..10000 {
+        for i in 0..100000 {
             let x = fastrand::f32() * 500.0;
             let y = fastrand::f32() * 500.0;
             gds_instantiate(x as u32, y as u32);
