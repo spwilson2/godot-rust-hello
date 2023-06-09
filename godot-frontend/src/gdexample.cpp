@@ -1,5 +1,8 @@
 #include "gdexample.h"
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
+#include <godot_cpp/classes/packed_scene.hpp>
+#include <godot_cpp/classes/scene_state.hpp>
 
 using namespace godot;
 
@@ -61,13 +64,21 @@ void GDExample::_process(double delta) {
 
     //mtx.lock();
     if (instantiate_queue.size() == 10000) {
+    auto loader = ResourceLoader::get_singleton();
+    auto node_scene = (Ref<PackedScene>)loader->load("res://gd_example.tscn");
     while (instantiate_queue.size() > 0) {
         Vector2 vec = instantiate_queue.back();
         instantiate_queue.pop_back();
-        auto new_node = (GDExample*) this->duplicate();
+        auto new_node = (GDExample*)node_scene->instantiate();
+
+        //auto new_node = (GDExample*) this->duplicate();
+        //auto state = node_scene->get_state();
+        //auto new_node = new GDExample();
         auto trans = Transform2D(0, vec);
         new_node->set_transform(trans);
-        this->add_sibling(new_node);
+        auto parent = this->get_parent();
+        parent->add_child(new_node);
+        //this->add_sibling(new_node);
         count++;
         new_node->set_z_index(count% 4096);
     }

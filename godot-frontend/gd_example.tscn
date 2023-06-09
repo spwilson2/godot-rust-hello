@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://6mks3smfliyc"]
+
+[sub_resource type="Curve" id="Curve_lljs6"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_1atat"]
+curve = SubResource("Curve_lljs6")
+
+[node name="GDExample" type="GDExample"]
+position = Vector2(-76.9597, 39.2689)
+scale = Vector2(0.249685, 69.4622)
+texture = SubResource("CurveTexture_1atat")
